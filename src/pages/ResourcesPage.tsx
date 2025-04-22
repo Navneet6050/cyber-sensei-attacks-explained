@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileCode, BookOpen, Bookmark, Terminal } from "lucide-react";
+import { toast } from "@/components/ui/use-toast";
 
 const ResourcesPage = () => {
   const resources = [
@@ -13,17 +14,17 @@ const ResourcesPage = () => {
         {
           title: "Linux Security Documentation",
           description: "Official documentation on Linux kernel security features, user permissions, and system hardening.",
-          link: "#",
+          link: "https://www.kernel.org/doc/html/latest/security/index.html",
         },
         {
           title: "Windows Security Guide",
           description: "Microsoft's comprehensive guide to securing Windows operating systems in various environments.",
-          link: "#",
+          link: "https://learn.microsoft.com/en-us/windows/security/",
         },
         {
           title: "macOS Security Overview",
           description: "Apple's documentation on built-in security technologies and best practices for macOS.",
-          link: "#",
+          link: "https://support.apple.com/guide/security/welcome/web",
         },
       ],
       icon: <BookOpen className="h-6 w-6 text-cyber" />,
@@ -72,6 +73,25 @@ const ResourcesPage = () => {
     },
   ];
 
+  const handleAccessResource = (title: string, link: string) => {
+    if (link === "#") {
+      toast({
+        title: "Resource Unavailable",
+        description: `The resource "${title}" is currently being updated. Please check back later.`,
+        variant: "destructive",
+      });
+    } else {
+      // Open link in new tab
+      window.open(link, "_blank", "noopener,noreferrer");
+      
+      // Also notify the user
+      toast({
+        title: "Resource Opened",
+        description: `You're now viewing "${title}" in a new tab.`,
+      });
+    }
+  };
+
   return (
     <Layout>
       <div className="bg-night-dark py-16">
@@ -97,11 +117,13 @@ const ResourcesPage = () => {
                       </CardHeader>
                       <CardContent>
                         <p className="text-gray-400 mb-4">{item.description}</p>
-                        <Button variant="outline" className="text-cyber border-cyber hover:bg-cyber/10" asChild>
-                          <a href={item.link}>
-                            <Bookmark className="mr-2 h-4 w-4" />
-                            Access Resource
-                          </a>
+                        <Button 
+                          variant="outline" 
+                          className="text-cyber border-cyber hover:bg-cyber/10"
+                          onClick={() => handleAccessResource(item.title, item.link)}
+                        >
+                          <Bookmark className="mr-2 h-4 w-4" />
+                          Access Resource
                         </Button>
                       </CardContent>
                     </Card>

@@ -2,8 +2,15 @@
 import { Button } from "@/components/ui/button";
 import { Shield } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/analyzer");
+  };
+
   return (
     <nav className="bg-night-dark border-b border-cyber/10 px-4 py-3 sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between">
@@ -27,7 +34,10 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <Button className="bg-cyber hover:bg-cyber-light text-white">
+        <Button 
+          className="bg-cyber hover:bg-cyber-light text-white"
+          onClick={handleGetStarted}
+        >
           Get Started
         </Button>
       </div>
