@@ -52,6 +52,30 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+        cyber: {
+          DEFAULT: '#05d9e8',
+          dark: '#005678',
+          light: '#01c8d8',
+          foreground: '#ffffff',
+        },
+        night: {
+          DEFAULT: '#1a1e2e',
+          dark: '#0d1117',
+          light: '#2d3748',
+          foreground: '#ffffff',
+        },
+        danger: {
+          DEFAULT: '#ff2a6d',
+          dark: '#d41d5c',
+          light: '#ff5a8d',
+          foreground: '#ffffff',
+        },
+        warning: {
+          DEFAULT: '#f9c80e',
+          dark: '#e0b400',
+          light: '#ffd23f',
+          foreground: '#000000',
+        },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
